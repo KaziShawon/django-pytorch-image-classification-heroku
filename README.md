@@ -1,14 +1,12 @@
 ## About the Project
-The target of the project is to build a image classification model and move the model to production. The approaches which are being embraced are:
+The target of the project is to build a image classification model and use django framework to run inference from a webpage. The approaches which are being embraced are:
 <ol>
   <li>Building a deeplearning classification model from freely available datset. In this case <a href="https://www.kaggle.com/alessiocorrado99/animals10">This dataset is being used</a>.</li>
-  <li>Set up a communication URL.</li>
-  <li>Accept input from a wide variety of environments/formats when it is sent to the URL.</li>
+  <li>Set up a Django App.</li>
+  <li>Accept input from a web page..</li>
   <li>Convert every form of input into the exact format that the machine learning model needs as input.</li>
   <li>Make predictions with the trained deep learning-based model.</li>
-  <li>Convert predictions into the right format and respond to the client's request with the prediction.</li>
-  <li>Create a Docker file for classification and deploying it to cloud instance.
-  <li>Deploying the FMNIST classifier on an Amazon Web Services (AWS) Elastic Compute Cloud (EC2)</li>
+  <li>Show the predicted labels and the image in website.</li>
 </ol>
 
 <div>
@@ -24,4 +22,21 @@ The target of the project is to build a image classification model and move the 
     <li>The model has achieved 96% accuracy with test set, which dataset model has not seen during training.</li>
     <li>The best model according to the best validation accuracy is being saved in directory.</li>
   </ol>
+</div>
+<div>
+  <h2>Building Django APP</h2>
+  <h4>Django URL setup</h4> 
+       <p>Having the PyTorch classification logic implemented in image_classification/views.py, I now need to integrate it into the Django app and really use it in a Django view and template. For that, I first make some adjustments in the URLs by creating a separate image_classification/urls.py for the URLs of the image classification app. When visiting the main page of the web app, the requests are now directed to an index view, which I need to implement next and which will make use of the previous PyTorch classification logic. Before, I still need link these URLs to the project's URLs in pytorch_django/urls.py such that they become effective.</p>
+  <h5>Django Image Upload, Classification, and Display</h5>
+  <p>Now, I implement the index view, which accepts an uploaded image, processes it, and passes it to the PyTorch classification logic implemented above. I also need a simple Django template to render the web interface, where users can upload an image and submit it for classification. After classification, the template needs to show the predicted label.</p>
+  <ol>
+    <li>For submitting uploaded images, I use a very simply Django form with an ImageField in image_classification/forms.py</li>
+    <li>I use this form inside my index view to accept uploaded images. (index is how I called it in my image_classification/urls.py but it could be any other name.) Here, I just want to display the uploaded image and pass it to the PyTorch model for classification. I do not want to (even temporarily) store it to the file system/disk. Hence, inside the view (image_classification/views.py), I get the image from the form, get its byte representation (for PyTorch) and create an image URI for displaying the image in the template later.</li>
+    <li>The index view above calls Django's render function on a template image_classification/index.html, which I need to create now (inside the image_classification/templates directory). The template needs to show the form for uploading images and, after submitting and image, the uploaded image and its predicted label.</li>
+    <li>The uploaded image uses the saved and passed image URI from before and does not save or load any image from disk, which is important for privacy.</li>
+  </ol>
+</div>
+<div>
+  <h3>Testing the App Locally</h3>
+  <p>Running the app locally should now work without errors and show a simple page with the image upload form: <br><img src="https://i.ibb.co/56XGpnB/django-elephant.jpg" alt="django-elephant" border="0"></p>
 </div>

@@ -21,11 +21,7 @@
 
     <h1>Image Classification App</h1>
     <p>A simple Django web app with a pretrained PyTorch DenseNet model will try to classify the selected image
-        according to ImageNet labels. Uploaded images are not saved.</p>
-    <p><small>Further information:
-            <a href="https://stefanbschneider.github.io/blog/pytorch-django" target="_blank">Blog Post</a>,
-            <a href="https://github.com/stefanbschneider/pytorch-django" target="_blank">GitHub</a></small>
-    </p>
+        according to 10 class labels. Uploaded images are not saved.</p>
 
     <form method="post" enctype="multipart/form-data" style="margin-top: 50px; margin-bottom: 30px;">
         {% csrf_token %}
@@ -48,23 +44,6 @@
         style="max-width: min(500px, 100%); height: auto; margin-top: 30px;">
     {% endif %}
 
-    <!-- {# spinner inside the submit button when uploading and classifying an image #}
-    {# from https://stackoverflow.com/a/54533740/2745116 #}
-    {# strange: works on Firefox but on Chrome, keeps spinning forever #}
-    {#
-    <script>#}
-        {#    $(document).ready(function () {# }
-{#        $("#btnUpload").click(function () {# }
-{#            // disable button#}
-{#            $(this).prop("disabled", true);#}
-{#            // add spinner to button#}
-            { #$(this).html(#}
-            {#'<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading'#}
-            {#);#}
-{#        });#
-        }
-        {# });#}
-        {#</script>#} -->
 </body>
 
 </html>

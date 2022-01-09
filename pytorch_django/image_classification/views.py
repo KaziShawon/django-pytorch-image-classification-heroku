@@ -37,8 +37,6 @@ def transforms(image_bytes):
 
 
 num_classes = 10
-# Use Inception V3
-model = models.inception_v3(pretrained=False)
 path2weights = "/home/kz/Projects_Learning/medina-tech-portfolio/django-pytorch-image-classification-heroku/pytorch_django/vgg16_pretrained.pt"
 classes = ["cane", "cavallo", "elefante", "farfalla", "gallina",
            "gatto", "mucca", "pecora", "ragno", "scoiattolo"]

@@ -37,7 +37,7 @@ def transforms(image_bytes):
 
 
 num_classes = 10
-path2weights = "/home/kz/Projects_Learning/medina-tech-portfolio/django-pytorch-image-classification-heroku/pytorch_django/vgg16_pretrained.pt"
+path2weights = "vgg16_pretrained.pt"
 classes = ["cane", "cavallo", "elefante", "farfalla", "gallina",
            "gatto", "mucca", "pecora", "ragno", "scoiattolo"]
 translate = {"cane": "dog", "cavallo": "horse", "elefante": "elephant", "farfalla": "butterfly",
